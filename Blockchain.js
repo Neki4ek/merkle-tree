@@ -23,12 +23,13 @@ class Blockchain {
     constructor() {
         
         this.chain = [
-             /* TODO 1: Create the genesis block here */ 
+             Block()
             ];
     }
 
     addBlock(block){
         // TODO 2 Compute block.previousHash = previousBlock.toHash()
+        block.previousHash = previousBlock.toHash()
         this.chain.push(block)
     }
 

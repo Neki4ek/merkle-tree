@@ -1,8 +1,3 @@
-/**
- * Seminar 2.4 Simple Merkle Tree
- */
-
-
 function concatHashes(a, b) {
     return `Hash(${a} + ${b})`;
 } 
@@ -68,7 +63,11 @@ class MerkleTree {
 
 
 function verifyProof(proof, nodeHash, rootHash) {
-    // TODO Verify proof chain
+    let hash = nodeHash;
+    proof.forEach(element => {
+        hash = element.left ? concatHashes(element.hash, hash) : concatHashes(hash, element.hash);
+    });
+    return hash === rootHash;
 }
 
 

@@ -1,8 +1,3 @@
-/**
- * Seminar 2.5 Simple Trie
- */
-
-
 class TrieNode {
     constructor(key) {
         this.key = key;
@@ -18,7 +13,14 @@ class Trie {
     }
 
     insert(word) {
-        // TODO Insert word symbol by symbol
+        let node = this.root;
+        for (let element of word){
+            node.children[element] ??= new TrieNode(element);
+
+            node = node.children[element];
+
+            node.isWord = element === word[word.length - 1];
+        };
 
     }
 

@@ -25,13 +25,30 @@ class Trie {
     }
 
     hasNode(word){
-        // TODO Check is word in Trie
-        return false;
+        let node = this.root;
+        for (let char of word) {
+            if (!(char in node.children)) {
+                return false;
+            }
+            node = node.children[char];
+        }
+        return true;
     }
 
     getAllNodes(){
         // TODO returns all nodes as array
-        return [];
+        const result = [];
+
+        function traverse(node) {
+            result.push({ node });
+            
+            for (const char in node.children) {
+                traverse(node.children[char]);
+            }
+        }
+
+        traverse(this.root);
+        return result;
     }
 }
 
